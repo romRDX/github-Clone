@@ -1,5 +1,12 @@
-import React, { createContext, useCallback, useState, useContext } from 'react';
-import api from '../services/api';
+import React, {
+  createContext,
+  useCallback,
+  useState,
+  useContext,
+  useEffect,
+} from 'react';
+import { useQuery, gql, DocumentNode } from '@apollo/client';
+import { useHistory } from 'react-router-dom';
 
 interface User {
   id: string;
@@ -19,64 +26,58 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: User;
-  signIn(credentials: SignInCredentials): Promise<void>;
+  user: string;
+  userQuery: DocumentNode;
+  signIn(user: string): void;
   signOut(): void;
-  updateUser(data: User): void;
 }
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [data, setData] = useState<AuthStateData>(() => {
-    const token = localStorage.getItem('@GoBarber:token');
-    const user = localStorage.getItem('@GoBarber:user');
+  const history = useHistory();
 
-    if (token && user) {
-      api.defaults.headers.authorization = `Bearer ${token}`;
+  const [loggedUser, setLoggedUser] = useState<string>('');
 
-      return { token, user: JSON.parse(user) };
-    }
+  useEffect(() => {
+    const user = localStorage.getItem('@Fohat:user');
 
-    return {} as AuthStateData;
-  });
-
-  const signIn = useCallback(async ({ email, password }) => {
-    const response = await api.post('sessions', {
-      email,
-      password,
-    });
-
-    const { token, user } = response.data;
-
-    localStorage.setItem('@GoBarber:token', token);
-    localStorage.setItem('@GoBarber:user', JSON.stringify(user));
-
-    setData({ token, user });
+    if (user) setLoggedUser(user);
   }, []);
+
+  const signIn = (user: string): void => {
+    setLoggedUser(user);
+    localStorage.setItem('@Fohat:user', JSON.stringify(user));
+    history.push('/dashboard');
+  };
+
+  const USER_QUERY = gql`
+    query GetRepositories($user: String!) {
+      repositoryOwner(login: $user) {
+        avatarUrl
+        repositories(first: 4) {
+          nodes {
+            name
+            description
+            primaryLanguage {
+              name
+            }
+            stargazerCount
+          }
+        }
+      }
+    }
+  `;
 
   const signOut = useCallback(() => {
-    localStorage.removeItem('@GoBarber:token');
-    localStorage.removeItem('@GoBarber:user');
-
-    setData({} as AuthStateData);
+    // localStorage.removeItem('@GoBarber:token');
+    // localStorage.removeItem('@GoBarber:user');
+    // setData({} as AuthStateData);
   }, []);
-
-  const updateUser = useCallback(
-    (user: User) => {
-      localStorage.setItem('@GoBarber:user', JSON.stringify(user));
-
-      setData({
-        token: data.token,
-        user,
-      });
-    },
-    [setData, data.token],
-  );
 
   return (
     <AuthContext.Provider
-      value={{ user: data.user, signIn, signOut, updateUser }}
+      value={{ user: loggedUser, userQuery: USER_QUERY, signIn, signOut }}
     >
       {children}
     </AuthContext.Provider>

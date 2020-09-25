@@ -1,57 +1,43 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { FaGithub, FaArrowCircleRight } from 'react-icons/fa';
+import { useAuth } from '../../hooks/auth';
 
 import { Container, Content } from './styles';
 import signInBackground from '../../assets/gitBkg.png';
 
 interface RepositoryVars {
   user: string;
-  // name: string;
 }
 
-const TEST_QUERY = gql`
-  query {
-    repositoryOwner(login: "joaoD3V") {
-      avatarUrl
-      repositories(first: 3) {
-        nodes {
-          name
-          description
-          primaryLanguage {
-            name
-          }
-          stargazerCount
-        }
-      }
-    }
-  }
-`;
-
 const Dashboard: React.FC = () => {
-  const { loading, error, data } = useQuery(TEST_QUERY);
+  const [user, setUser] = useState('');
 
-  console.log(data);
+  const { signIn } = useAuth();
 
-  // useEffect(() => {
-  // async function getRepository() {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.get(`repos/${repoName}`);
-  //     const repository = response.data;
+  const handleChangeField = useCallback(
+    ({ target }) => {
+      setUser(target.value);
+    },
+    [setUser],
+  );
 
-  //     setErrorMessage(null);
-  //   } catch (error) {
-  //     setErrorMessage(error.message);
-  //   }finally {
-  //     setLoading(false);
-  //   }
-  // }
-  // getRepository();
-  // }, []);
+  const handleSignIn = useCallback(() => {
+    signIn(user);
+  }, [signIn, user]);
 
   return (
     <Container img={signInBackground}>
-      <Content />
+      <Content>
+        <strong>
+          Github Explorer {user}
+          <FaGithub />
+        </strong>
+        <input onChange={handleChangeField} placeholder="Your github user" />
+        <button type="button" onClick={handleSignIn}>
+          Explore!
+          <FaArrowCircleRight />
+        </button>
+      </Content>
     </Container>
   );
 };

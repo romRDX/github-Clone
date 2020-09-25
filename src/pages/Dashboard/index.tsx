@@ -1,7 +1,6 @@
 import React, { useState, useCallback, useEffect, useMemo } from 'react';
 import { useQuery, gql } from '@apollo/client';
-
-import { Console } from 'console';
+import { useAuth } from '../../hooks/auth';
 import { Container } from './styles';
 
 interface RepositoryVars {
@@ -10,10 +9,10 @@ interface RepositoryVars {
 }
 
 const TEST_QUERY = gql`
-  query {
-    repositoryOwner(login: "romRDX") {
+  query GetRepositories($user: String!) {
+    repositoryOwner(login: $user) {
       avatarUrl
-      repositories(first: 20) {
+      repositories(first: 4) {
         nodes {
           name
           description
@@ -27,18 +26,25 @@ const TEST_QUERY = gql`
   }
 `;
 
-// , name: "BookShelf"
-
 const Dashboard: React.FC = () => {
-  // const { loading, error, data } = useQuery(EXCHANGE_RATES, {
-  //   variables: { user: 'romRDX' },
+  const { user, userQuery } = useAuth();
+
+  const { loading, error, data } = useQuery(userQuery, {
+    variables: { user },
+  });
+  console.log(data);
+
+  // const test = () => {
+  //   const { loading, error, data } = useQuery(TEST_QUERY, {
+  //     variables: { user },
+  //   });
+  // };
+
+  // const { loading, error, data } = useQuery(TEST_QUERY, {
+  //   variables: { user },
   // });
 
   // console.log(data);
-
-  const { loading, error, data } = useQuery(TEST_QUERY);
-
-  console.log(data);
 
   // useEffect(() => {
   // async function getRepository() {
@@ -60,7 +66,6 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <h1>teste</h1>
-      {data && <h1>{}</h1>}
     </Container>
   );
 };

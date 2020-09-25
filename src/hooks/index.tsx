@@ -4,11 +4,11 @@ import { ToastProvider } from './toast';
 import { ApolloProvider } from './apollo';
 
 const AppProvider: React.FC = ({ children }) => (
-  <AuthProvider>
-    <ApolloProvider>
+  <ApolloProvider>
+    <AuthProvider>
       <ToastProvider>{children}</ToastProvider>
-    </ApolloProvider>
-  </AuthProvider>
+    </AuthProvider>
+  </ApolloProvider>
 );
 
 export default AppProvider;
