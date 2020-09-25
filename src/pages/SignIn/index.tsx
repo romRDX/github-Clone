@@ -11,9 +11,9 @@ interface RepositoryVars {
 
 const TEST_QUERY = gql`
   query {
-    repositoryOwner(login: "romRDX") {
+    repositoryOwner(login: "joaoD3V") {
       avatarUrl
-      repositories(first: 20) {
+      repositories(first: 3) {
         nodes {
           name
           description

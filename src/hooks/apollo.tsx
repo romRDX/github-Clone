@@ -7,7 +7,7 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 
-const myAuth = 'fb993beb2b4fb014813d42075ebb0769162b2f21';
+const myAuth = '72702e18165532212ba9d8098234edc847804e06';
 
 const authLink = new ApolloLink((operation, forward) => {
   operation.setContext({
