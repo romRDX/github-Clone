@@ -3,7 +3,32 @@ import { createGlobalStyle } from 'styled-components';
 // import gitBackground from '../assets/gitBackground.svg';
 
 export default createGlobalStyle`
-  *{
+
+  :root {
+    --white: #FFF;
+
+    --black-1: #1B2437;
+    --black-2: #1b1b1b;
+    --black-3: #000000;
+
+    --gray-1: #F6F6F6;
+    --gray-2: #EFEFF4;
+    --gray-3: #E5E5EA;
+    --gray-4: #D1D1D6;
+    --gray-5: #C7C7CC;
+    --gray-6: #8E8E93;
+    --gray-7: #48484A;
+    --gray-8: #31363f;
+
+    --pink: #EDA3B5;
+    --pink-2: #ff9d9d;
+
+    --red: #FF0000;
+
+    --green: #00FF00;
+  }
+
+  * {
     margin: 0;
     padding: 0;
     outline: 0;
@@ -16,8 +41,7 @@ export default createGlobalStyle`
 
   body {
     height: 100%;
-    /* background: #312E38; */
-    /* color: #FFF; */
+    background: var(--gray-4);
 
     -webkit-font-smoothing: antialiased;
   }

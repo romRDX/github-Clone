@@ -7,9 +7,9 @@ import {
   InMemoryCache,
 } from '@apollo/client';
 
-const auth1 = '9dc64535f33';
-const auth2 = 'ca748299abfa';
-const auth3 = '0ec7e9aced9107873';
+const auth1 = 'fa6c7b0365f9c';
+const auth2 = 'd6a4260d182d3';
+const auth3 = '08dbdc987f8402';
 
 const myAuth = auth1 + auth2 + auth3;
 

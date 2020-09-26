@@ -27,7 +27,6 @@ interface SignInCredentials {
 
 interface AuthContextData {
   user: string;
-  userQuery: DocumentNode;
   signIn(user: string): void;
   signOut(): void;
 }
@@ -51,24 +50,6 @@ export const AuthProvider: React.FC = ({ children }) => {
     history.push('/dashboard');
   };
 
-  const USER_QUERY = gql`
-    query GetRepositories($user: String!) {
-      repositoryOwner(login: $user) {
-        avatarUrl
-        repositories(first: 4) {
-          nodes {
-            name
-            description
-            primaryLanguage {
-              name
-            }
-            stargazerCount
-          }
-        }
-      }
-    }
-  `;
-
   const signOut = useCallback(() => {
     // localStorage.removeItem('@GoBarber:token');
     // localStorage.removeItem('@GoBarber:user');
@@ -76,9 +57,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ user: loggedUser, userQuery: USER_QUERY, signIn, signOut }}
-    >
+    <AuthContext.Provider value={{ user: loggedUser, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
