@@ -11,7 +11,6 @@ export const Container = styled.div<ContainerProps>`
   width: 300px;
   transition: 1s;
   left: ${(props) => (props.isOpen ? '-15px' : '-301px')};
-  /* left: -15px; */
   top: 0;
   bottom: 0;
   margin: auto 0;
@@ -19,6 +18,18 @@ export const Container = styled.div<ContainerProps>`
   padding-left: 20px;
   border-bottom-right-radius: 10px;
   border-top-right-radius: 10px;
+
+  animation: 'fadeIn' 1s;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export const Content = styled.div`

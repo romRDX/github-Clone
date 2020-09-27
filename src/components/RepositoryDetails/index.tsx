@@ -1,9 +1,10 @@
 import React, { useCallback } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 
 import { FaRegStar } from 'react-icons/fa';
 import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
+import REPOSITORY_QUERY from './query';
 import { useRepositories } from '../../hooks/repositories';
 
 import {
@@ -16,34 +17,13 @@ import {
   CloseButton,
 } from './styles';
 
-const USER_QUERY = gql`
-  query GetRepositories($user: String!, $name: String!) {
-    user(login: $user) {
-      repository(name: $name) {
-        createdAt
-        description
-        name
-        id
-        stargazerCount
-        languages(first: 3) {
-          nodes {
-            name
-          }
-        }
-        url
-        updatedAt
-      }
-    }
-  }
-`;
-
 interface RepositoryProps {
   hideDetails(): void;
   repo: string;
 }
 
 const RepositoryItem: React.FC<RepositoryProps> = ({ repo, hideDetails }) => {
-  const { loading, error, data } = useQuery(USER_QUERY, {
+  const { loading, error, data } = useQuery(REPOSITORY_QUERY, {
     variables: { user: 'romRDX', name: repo },
   });
 
@@ -58,7 +38,8 @@ const RepositoryItem: React.FC<RepositoryProps> = ({ repo, hideDetails }) => {
 
   return (
     <Container>
-      {data && (
+      {loading && <h2>Loading</h2>}
+      {data && !error && (
         <>
           <div>
             <Details>

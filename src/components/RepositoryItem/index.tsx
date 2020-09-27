@@ -5,7 +5,7 @@ import { FaRegStar } from 'react-icons/fa';
 import { Container } from './styles';
 
 interface RepositoryProps {
-  setSelected: any;
+  setSelected(name: string): void;
   repo: {
     name: string;
     description: string;

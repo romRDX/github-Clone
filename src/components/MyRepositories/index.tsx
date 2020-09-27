@@ -1,27 +1,12 @@
 import React, { useState, useCallback } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import REPOSITORIES_QUERY from './query';
 
 import { useRepositories } from '../../hooks/repositories';
 
 import RepositoryItem from '../RepositoryItem';
 
 import { Container, MyRepos, Repos } from './styles';
-
-const USER_QUERY = gql`
-  query GetRepositories($user: String!, $count: Int!) {
-    user(login: $user) {
-      repositories(first: $count) {
-        totalCount
-        nodes {
-          name
-          id
-          stargazerCount
-          description
-        }
-      }
-    }
-  }
-`;
 
 interface Repository {
   name: string;
@@ -34,7 +19,7 @@ const MyRepositories: React.FC = () => {
   const [count, setCount] = useState<number>(4);
   const { setSelectedRepo } = useRepositories();
 
-  const { loading, error, data } = useQuery(USER_QUERY, {
+  const { loading, error, data } = useQuery(REPOSITORIES_QUERY, {
     variables: { user: 'romRDX', count },
   });
 
@@ -52,7 +37,9 @@ const MyRepositories: React.FC = () => {
       <strong>My repositories</strong>
       <MyRepos>
         <Repos>
+          {loading && <h2>Loading</h2>}
           {data &&
+            !error &&
             data.user.repositories.nodes.map((repo: Repository) => (
               <RepositoryItem
                 setSelected={setSelectedRepo}

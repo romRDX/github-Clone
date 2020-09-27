@@ -24,10 +24,8 @@ export const RepositoriesProvider: React.FC = ({ children }) => {
     (repo: Repo) => {
       if (favoriteRepos.some((e) => e.id === repo.id)) {
         setFavoriteRepos((state) => state.filter((e) => e.id !== repo.id));
-        console.log('x1: ', favoriteRepos);
       } else {
         setFavoriteRepos((state) => [...state, repo]);
-        console.log('x2: ', favoriteRepos);
       }
     },
     [favoriteRepos],

@@ -1,52 +1,17 @@
-import React, { ButtonHTMLAttributes } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+import USER_QUERY from './query';
 import { Container, UserProfile, RepositoriesInfo } from './styles';
-
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
-  loading?: boolean;
-};
-
-const USER_QUERY = gql`
-  query GetRepositories($user: String!) {
-    user(login: $user) {
-      name
-      avatarUrl
-      login
-      bio
-      email
-      company
-      location
-      followers {
-        totalCount
-      }
-      following {
-        totalCount
-      }
-      pinnedItems(first: 4) {
-        nodes {
-          ... on Repository {
-            id
-            name
-          }
-        }
-      }
-      repositories {
-        totalCount
-      }
-    }
-  }
-`;
 
 const UserInfo: React.FC = () => {
   const { loading, error, data } = useQuery(USER_QUERY, {
     variables: { user: 'romRDX' },
   });
 
-  // console.log(data);
-
   return (
     <Container>
-      {data && (
+      {loading && <h2>Loading</h2>}
+      {data && !error && (
         <>
           <UserProfile>
             <img alt="User avatar" src={data.user.avatarUrl} />

@@ -1,7 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
 
-// import gitBackground from '../assets/gitBackground.svg';
-
 export default createGlobalStyle`
 
   :root {

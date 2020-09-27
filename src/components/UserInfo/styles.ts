@@ -20,6 +20,18 @@ export const Container = styled.div`
 
   border: 1px solid black;
 
+  animation: 'fadeIn' 1s;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   img {
     width: 200px;
     height: 200px;
@@ -68,15 +80,17 @@ export const RepositoriesInfo = styled.div`
   border-left: 1px solid var(--gray-6);
 
   p {
-    font-size: 18px;
+    font-size: 20px;
     display: flex;
     flex-direction: column;
     text-align: center;
     margin: 10px auto;
     color: var(--black-3);
+    text-shadow: 0 0 3px var(--gray-2);
 
     span {
-      color: gray;
+      color: var(--gray-4);
+      text-shadow: none;
     }
   }
 `;

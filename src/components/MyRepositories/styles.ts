@@ -21,6 +21,18 @@ export const Container = styled.div`
   align-items: flex-start;
   transition: 1s;
 
+  animation: 'fadeIn' 1s;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
   > strong {
     width: 100%;
     padding-bottom: 8px;
