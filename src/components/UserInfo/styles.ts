@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 800px;
+  max-width: 780px;
   height: fit-content;
 
   border-radius: 10px;

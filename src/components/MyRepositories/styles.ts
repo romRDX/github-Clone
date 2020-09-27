@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { shade } from 'polished';
 
 export const Container = styled.div`
   width: 100%;
-  max-width: 800px;
+  max-width: 780px;
   height: fit-content;
 
   border-radius: 10px;
@@ -14,12 +13,13 @@ export const Container = styled.div`
   transition: background-color 0.2s;
   display: flex;
   align-items: center;
-  margin: 40px auto;
+  margin: 38px auto 120px;
   padding: 10px 15px;
   background: var(--gray-8);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  transition: 1s;
 
   > strong {
     width: 100%;
@@ -60,26 +60,26 @@ export const SingleRepo = styled.div`
   flex-direction: column;
 `;
 
-export const DarkBackground = styled.div`
-  width: 100%;
-  height: 100%;
-  background: var(--black-2);
-  opacity: 0.7;
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 2;
-  transition: 0.5s;
+// export const DarkBackground = styled.div`
+//   width: 100%;
+//   height: 100%;
+//   background: var(--black-2);
+//   opacity: 0.7;
+//   position: fixed;
+//   top: 0;
+//   right: 0;
+//   z-index: 2;
+//   transition: 0.5s;
 
-  animation: 'fadeIn' 0.5s;
+//   animation: 'fadeIn' 0.5s;
 
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
+//   @keyframes fadeIn {
+//     0% {
+//       opacity: 0;
+//     }
 
-    100% {
-      opacity: 0.7;
-    }
-  }
-`;
+//     100% {
+//       opacity: 0.7;
+//     }
+//   }
+// `;

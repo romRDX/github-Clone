@@ -133,24 +133,28 @@ export const Dates = styled.div`
       font-size: 14px;
     }
   }
+`;
 
-  button {
-    padding: 5px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    transition: 0.5s;
+interface FavoriteButtonProps {
+  isFavorite: boolean;
+}
 
-    &:hover {
-      box-shadow: 0 0 5px var(--red);
-    }
+export const FavoriteButton = styled.button`
+  padding: 5px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  transition: 0.5s;
 
-    svg {
-      width: 20px;
-      height: 20px;
-      color: var(--red);
-      margin-left: 5px;
-    }
+  &:hover {
+    box-shadow: 0 0 5px var(--red);
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    color: var(--red);
+    margin-left: 5px;
   }
 `;
 

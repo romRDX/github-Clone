@@ -1,10 +1,11 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useQuery, gql } from '@apollo/client';
 
-import RepositoryItem from '../RepositoryItem';
-import RepositoryDetails from '../RepositoryDetails';
+import { useRepositories } from '../../hooks/repositories';
 
-import { Container, MyRepos, Repos, DarkBackground } from './styles';
+import RepositoryItem from '../RepositoryItem';
+
+import { Container, MyRepos, Repos } from './styles';
 
 const USER_QUERY = gql`
   query GetRepositories($user: String!, $count: Int!) {
@@ -31,17 +32,11 @@ interface Repository {
 
 const MyRepositories: React.FC = () => {
   const [count, setCount] = useState<number>(4);
-  const [selectedRepo, setSelectedRepo] = useState<string>('');
+  const { setSelectedRepo } = useRepositories();
 
   const { loading, error, data } = useQuery(USER_QUERY, {
     variables: { user: 'romRDX', count },
   });
-
-  useEffect(() => {
-    console.log(selectedRepo);
-  }, [selectedRepo]);
-
-  // console.log(data);
 
   const handleLoadRepos = useCallback(() => {
     if (count + 4 <= data.user.repositories.totalCount) {
@@ -51,10 +46,6 @@ const MyRepositories: React.FC = () => {
       setCount(4);
     }
   }, [count, data]);
-
-  const handleHideDetails = (): void => {
-    setSelectedRepo('');
-  };
 
   return (
     <Container>
@@ -77,13 +68,6 @@ const MyRepositories: React.FC = () => {
             : 'Show more'}
         </button>
       </MyRepos>
-      {selectedRepo && (
-        <RepositoryDetails
-          repo={selectedRepo}
-          hideDetails={handleHideDetails}
-        />
-      )}
-      {selectedRepo && <DarkBackground onClick={handleHideDetails} />}
     </Container>
   );
 };

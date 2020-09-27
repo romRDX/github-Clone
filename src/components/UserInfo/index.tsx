@@ -1,6 +1,5 @@
 import React, { ButtonHTMLAttributes } from 'react';
 import { useQuery, gql } from '@apollo/client';
-import { useAuth } from '../../hooks/auth';
 import { Container, UserProfile, RepositoriesInfo } from './styles';
 
 type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
@@ -39,8 +38,6 @@ const USER_QUERY = gql`
 `;
 
 const UserInfo: React.FC = () => {
-  const { user } = useAuth();
-
   const { loading, error, data } = useQuery(USER_QUERY, {
     variables: { user: 'romRDX' },
   });

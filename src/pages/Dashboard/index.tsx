@@ -1,38 +1,33 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
-
+import React from 'react';
+import { useRepositories } from '../../hooks/repositories';
 import UserInfo from '../../components/UserInfo';
 import MyRepositories from '../../components/MyRepositories';
+import FavoriteRepos from '../../components/FavoriteRepos';
+import RepositoryDetails from '../../components/RepositoryDetails';
 
-import { Container } from './styles';
+import { Container, DarkBackground } from './styles';
 
 const Dashboard: React.FC = () => {
-  // const { loading, error, data } = useQuery(userQuery, {
-  //   variables: { user: 'romRDX' },
-  // });
-  // console.log(data);
+  const { selectedRepo, setSelectedRepo } = useRepositories();
 
-  // useEffect(() => {
-  // async function getRepository() {
-  //   try {
-  //     setLoading(true);
-  //     const response = await api.get(`repos/${repoName}`);
-  //     const repository = response.data;
-
-  //     setErrorMessage(null);
-  //   } catch (error) {
-  //     setErrorMessage(error.message);
-  //   }finally {
-  //     setLoading(false);
-  //   }
-  // }
-  // getRepository();
-  // }, []);
+  const handleHideDetails = (): void => {
+    setSelectedRepo('');
+  };
 
   return (
     <Container>
       <UserInfo />
 
       <MyRepositories />
+      <FavoriteRepos />
+
+      {selectedRepo && (
+        <RepositoryDetails
+          repo={selectedRepo}
+          hideDetails={handleHideDetails}
+        />
+      )}
+      {selectedRepo && <DarkBackground onClick={handleHideDetails} />}
     </Container>
   );
 };

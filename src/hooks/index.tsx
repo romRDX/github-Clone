@@ -1,13 +1,13 @@
 import React from 'react';
-import { AuthProvider } from './auth';
+import { RepositoriesProvider } from './repositories';
 import { ToastProvider } from './toast';
 import { ApolloProvider } from './apollo';
 
 const AppProvider: React.FC = ({ children }) => (
   <ApolloProvider>
-    <AuthProvider>
+    <RepositoriesProvider>
       <ToastProvider>{children}</ToastProvider>
-    </AuthProvider>
+    </RepositoriesProvider>
   </ApolloProvider>
 );
 
