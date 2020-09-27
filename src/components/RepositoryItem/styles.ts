@@ -19,7 +19,7 @@ export const Container = styled.div`
     box-shadow: 0 0 10px white;
   }
 
-  strong {
+  > strong {
     color: var(--gray-8);
     margin-bottom: 15px;
     display: block;
@@ -30,7 +30,7 @@ export const Container = styled.div`
     font-size: 14px;
   }
 
-  div {
+  > div {
     position: absolute;
     top: 4px;
     right: 7px;

@@ -32,7 +32,7 @@ export const UserProfile = styled.div`
   display: flex;
   width: 70%;
 
-  div {
+  > div {
     display: flex;
     justify-content: center;
     flex-direction: column;
