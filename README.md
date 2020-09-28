@@ -1,6 +1,7 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 **erros devido a autorização do github
+**testes não completos
 
 ## Available Scripts
 
