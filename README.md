@@ -1,43 +1,78 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-**erros devido a autorização do github
+You can see its online version on: https://rdx-github-explorer.netlify.app/
 
-## Available Scripts
+## Objective
 
-In the project directory, you can run:
+This is a Github explorer app, where you can see my profile data and my repositories on Github.
 
-### `yarn start`
+## Technologies ⚙
 
-Runs the app in the development mode.<br />
+- [ReactJS](https://reactjs.org/)
+- [React Router DOM](https://reacttraining.com/react-router/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Styled Components](https://styled-components.com/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [GraphQL](https://graphql.org/)
+- [Apollo Client](https://www.apollographql.com/)
+- [Git](https://git-scm.com/)
+- [Git Flow](https://github.com/nvie/gitflow)
+- [Visual Studio Code](https://code.visualstudio.com/)
+
+Made on Widows 10 Pro
+
+## Features ⭐
+
+- See my Github profile data
+- See my Github repositories
+- See detailed repository data 
+- Set any repository as favorite
+
+## Getting Started 💻
+
+Download the project:
+
+```bash
+$ git clone https://github.com/romRDX/github-Clone.git && cd github-Clone
+```
+
+Install all the project dependencies:
+
+```bash
+$ yarn
+```
+Start the project
+
+```bash
+$ yarn start
+```
+
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
+## Testing 📏
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the tests:
 
-### `yarn build`
+```bash
+$ yarn test
+```
+If you want a more detailed test, run:
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+$ yarn test:cover
+```
+This will also generate a coverage log that can be accessed in the root folder:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+ coverage/lcov-report/index.html
+```
 
 ## Learn More
 
