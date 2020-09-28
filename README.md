@@ -6,6 +6,27 @@ You can see its online version on: https://rdx-github-explorer.netlify.app/
 **erros devido a autorização do github
 **testes não completos
 
+## Technologies ⚙
+
+- [ReactJS](https://reactjs.org/)
+- [React Router DOM](https://reacttraining.com/react-router/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Styled Components](https://styled-components.com/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [GraphQL](https://graphql.org/)
+- [Apollo Client](https://www.apollographql.com/)
+
+## Features ⭐
+
+- See my Github profile data
+- See my Github repositories
+- See detailed repository data 
+- Set any repository as favorite
+
 ## Getting Started 💻
 
 Download the project:
