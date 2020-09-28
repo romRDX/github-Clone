@@ -2,9 +2,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can see its online version on: https://rdx-github-explorer.netlify.app/
 
+## Objective
 
-**erros devido a autorização do github
-**testes não completos
+This is a Github explorer app, where you can see my profile data and my repositories on Github.
 
 ## Technologies ⚙
 
@@ -19,6 +19,11 @@ You can see its online version on: https://rdx-github-explorer.netlify.app/
 - [Prettier](https://prettier.io/)
 - [GraphQL](https://graphql.org/)
 - [Apollo Client](https://www.apollographql.com/)
+- [Git](https://git-scm.com/)
+- [Git Flow](https://github.com/nvie/gitflow)
+- [Visual Studio Code](https://code.visualstudio.com/)
+
+Made on Widows 10 Pro
 
 ## Features ⭐
 
