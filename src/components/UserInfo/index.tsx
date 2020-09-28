@@ -2,11 +2,15 @@ import React from 'react';
 import { useQuery } from '@apollo/client';
 import USER_QUERY from './query';
 import { Container, UserProfile, RepositoriesInfo } from './styles';
+import { UserQuery, UserQueryVars } from './types';
 
 const UserInfo: React.FC = () => {
-  const { loading, error, data } = useQuery(USER_QUERY, {
-    variables: { user: 'romRDX' },
-  });
+  const { loading, error, data } = useQuery<UserQuery, UserQueryVars>(
+    USER_QUERY,
+    {
+      variables: { user: 'romRDX' },
+    },
+  );
 
   return (
     <Container>

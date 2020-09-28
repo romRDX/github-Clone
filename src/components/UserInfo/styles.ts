@@ -13,7 +13,6 @@ export const Container = styled.div`
   margin-top: 16px;
   transition: background-color 0.2s;
   display: flex;
-  /* align-items: center; */
   margin: 0 auto;
   background: var(--gray-8);
   padding: 15px;
