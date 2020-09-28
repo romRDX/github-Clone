@@ -2,9 +2,35 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 You can see its online version on: https://rdx-github-explorer.netlify.app/
 
+## Objective
 
-**erros devido a autorização do github
-**testes não completos
+This is a Github explorer app, where you can see my profile data and my repositories on Github.
+
+## Technologies ⚙
+
+- [ReactJS](https://reactjs.org/)
+- [React Router DOM](https://reacttraining.com/react-router/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [Styled Components](https://styled-components.com/)
+- [Jest](https://jestjs.io/)
+- [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [GraphQL](https://graphql.org/)
+- [Apollo Client](https://www.apollographql.com/)
+- [Git](https://git-scm.com/)
+- [Git Flow](https://github.com/nvie/gitflow)
+- [Visual Studio Code](https://code.visualstudio.com/)
+
+Made on Widows 10 Pro
+
+## Features ⭐
+
+- See my Github profile data
+- See my Github repositories
+- See detailed repository data 
+- Set any repository as favorite
 
 ## Getting Started 💻
 
