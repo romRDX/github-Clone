@@ -6,7 +6,7 @@ import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import { IoIosCloseCircleOutline } from 'react-icons/io';
 import REPOSITORY_QUERY from './query';
 import { useRepositories } from '../../hooks/repositories';
-import { RepositoryProps, RepositoryQuery, RepositoryQueryVars } from './types';
+import { RepositoryProps } from './types';
 
 import {
   Container,

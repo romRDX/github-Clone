@@ -8,7 +8,7 @@ import RepositoryItem from '../RepositoryItem';
 
 import { Container, MyRepos, Repos } from './styles';
 
-import { Repository, RepositoriesQuery, RepositoriesQueryVars } from './types';
+import { Repository } from './types';
 
 const MyRepositories: React.FC = () => {
   const repositoryGroupQuantity = 4;
