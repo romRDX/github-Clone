@@ -62,6 +62,6 @@ describe('Input component', () => {
 
     fireEvent.click(getByText('Show more'));
 
-    // unfinished test
+    // UNFINISHED TEST
   });
 });
