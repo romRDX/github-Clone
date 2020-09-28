@@ -14,7 +14,10 @@ interface RepositoryProps {
 }
 
 const RepositoryItem: React.FC<RepositoryProps> = ({ repo, setSelected }) => (
-  <Container onClick={() => setSelected(repo.name)}>
+  <Container
+    data-testid="repository-item"
+    onClick={() => setSelected(repo.name)}
+  >
     <strong>{repo.name}</strong>
     <p>{repo.description}</p>
     <div>

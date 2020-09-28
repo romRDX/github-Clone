@@ -16,21 +16,32 @@ interface Repository {
 }
 
 const MyRepositories: React.FC = () => {
-  const [count, setCount] = useState<number>(4);
+  const repositoryGroupQuantity = 4;
+  const [shownRepositoriesQuantity, setShownRepositoriesQuantity] = useState<
+    number
+  >(repositoryGroupQuantity);
   const { setSelectedRepo } = useRepositories();
 
   const { loading, error, data } = useQuery(REPOSITORIES_QUERY, {
-    variables: { user: 'romRDX', count },
+    variables: { user: 'romRDX', count: shownRepositoriesQuantity },
   });
 
+  const repositoriesTotalCount = data && data.user.repositories.totalCount;
+
   const handleLoadRepos = useCallback(() => {
-    if (count + 4 <= data.user.repositories.totalCount) {
-      setCount((state) => state + 4);
+    if (
+      shownRepositoriesQuantity + repositoryGroupQuantity <=
+      repositoriesTotalCount
+    ) {
+      setShownRepositoriesQuantity((state) => state + 4);
     }
-    if (count + 4 > data.user.repositories.totalCount) {
-      setCount(4);
+    if (
+      shownRepositoriesQuantity + repositoryGroupQuantity >
+      repositoriesTotalCount
+    ) {
+      setShownRepositoriesQuantity(4);
     }
-  }, [count, data]);
+  }, [shownRepositoriesQuantity, repositoriesTotalCount]);
 
   return (
     <Container>
@@ -50,7 +61,8 @@ const MyRepositories: React.FC = () => {
         </Repos>
 
         <button onClick={handleLoadRepos} type="button">
-          {data && count + 4 > data.user.repositories.totalCount
+          {data &&
+          shownRepositoriesQuantity + 4 > data.user.repositories.totalCount
             ? 'Show less'
             : 'Show more'}
         </button>

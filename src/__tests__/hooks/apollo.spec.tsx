@@ -1,8 +1,14 @@
 import { renderHook, act } from '@testing-library/react-hooks';
 import { wait, waitFor } from '@testing-library/react';
 import { ApolloProvider } from 'src/hooks/apollo';
-import { ApolloClient, useQuery, gql } from '@apollo/client';
-import { uuid } from 'uuidv4';
+import {
+  ApolloClient,
+  ApolloLink,
+  HttpLink,
+  InMemoryCache,
+  gql,
+  useQuery,
+} from '@apollo/client';
 
 const FAKE_QUERY = gql`
   query {
@@ -19,7 +25,7 @@ describe('Apollo Hook', () => {
       wrapper: ApolloProvider,
     });
 
-    console.log('XXX: ', result.current);
+    // UNFINISHED TEST
     // expect(typeof result.current.client).toBe(ApolloClient);
   });
 });

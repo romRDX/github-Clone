@@ -1,47 +1,103 @@
-// import React from 'react';
-// import { render, fireEvent, wait, waitFor, act } from '@testing-library/react';
-// import MockAdapter from 'axios-mock-adapter';
-// import Dashboard from '../../pages/Dashboard';
+import React from 'react';
+import { render, fireEvent, wait, act } from '@testing-library/react';
+import Dashboard from '../../pages/Dashboard';
 
-// const mockedHistoryPush = jest.fn();
+const mockedSetSelectedRepo = jest.fn();
+const mockedSetFavoriteRepos = jest.fn();
 
-// jest.mock('../../hooks/auth', () => {
-//   return {
-//     useAuth: () => ({
-//       signOut: jest.fn(),
-//       user: {
-//         id: 'test-user-id',
-//         name: 'test-user-name',
-//         avatar_url: 'test-user-avatarurl',
-//       },
-//     }),
-//   };
-// });
+jest.mock('../../hooks/repositories', () => {
+  return {
+    useRepositories: () => ({
+      favoriteRepos: [{ id: 'fake-repo-id', name: 'fake-repo-name' }],
+      setSelectedRepo: mockedSetSelectedRepo,
+      setFavoriteRepos: mockedSetFavoriteRepos,
+      selectedRepo: '', // 'fake-repository-name',
+    }),
+  };
+});
 
-// // jest.mock('react-router-dom', () => {
-// //   return {
-// //     useHistory: () => ({
-// //       push: mockedHistoryPush,
-// //     }),
-// //     Link: ({ children }: { children: React.ReactNode }) => children,
-// //   };
-// // });
+jest.mock('@apollo/client', () => {
+  return {
+    useQuery: () => ({
+      loading: false,
+      error: false,
+      data: {
+        user: {
+          name: 'fake-user-name',
+          avatarUrl: 'fake-avatar',
+          login: 'fake-login',
+          bio: 'fake-bio',
+          email: 'fake-email',
+          company: 'fake-company',
+          location: 'fake-location',
+          id: 'fake-user-id',
+          followers: {
+            totalCount: 78,
+          },
+          following: {
+            totalCount: 87,
+          },
+          repository: {
+            createdAt: 'fake-created-at-date',
+            description: 'fake-description',
+            name: 'fake-name',
+            id: 'fake-repository-id',
+            stargazerCount: 327,
+            languages: {
+              nodes: [
+                {
+                  name: 'fake-language',
+                  id: 'fake-language-id',
+                },
+              ],
+            },
+            url: 'fake-repository-url',
+            updatedAt: 'fake-updated-at-date',
+          },
+          repositories: {
+            totalCount: 20,
+            nodes: [
+              {
+                name: 'fake-repository-name',
+                id: 'fake-repository-id',
+                stargazerCount: 111,
+                description: 'fake-description',
+              },
+              {
+                name: 'fake-repository-name-2',
+                id: 'fake-repository-id-2',
+                stargazerCount: 222,
+                description: 'fake-description-2',
+              },
+            ],
+          },
+        },
+      },
+    }),
+    gql: jest.fn(),
+  };
+});
 
-// describe('Dashboard Page', () => {
-//   // beforeEach(() => {
-//   //   mockedHistoryPush.mockClear();
-//   // });
+describe('Dashboard Page', () => {
+  it('Should be able to render Dashboard page', async () => {
+    const { getByText } = render(<Dashboard />);
 
-//   it('Should be able to render Dashboard page', async () => {
-//     // const mockedApiGet = {
-//     //   get: jest.fn(),
-//     // };
+    expect(getByText('fake-user-name')).toBeTruthy();
+    expect(getByText('My repositories')).toBeTruthy();
+  });
 
-//     // jest.mock('../../services/api', () => mockedApiGet);
+  it('Should be able to open RepositoryDetails', async () => {
+    const { getByText } = render(<Dashboard />);
 
-//     const { getByText } = render(<Dashboard />);
+    await act(async () => {
+      fireEvent.click(getByText('fake-repository-name'));
+    });
 
-//     expect(getByText('romRDX')).toBeTruthy();
-//     expect(getByText('My repositories')).toBeTruthy();
-//   });
-// });
+    // UNFINISHED TEST
+
+    // expect(mockedSetSelectedRepo).toHaveBeenCalled();
+    // await wait(async () => {
+    //   expect(getByText('Main languages')).toBeTruthy();
+    // });
+  });
+});
